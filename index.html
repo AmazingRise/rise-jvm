@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <style>
+        #navi {
+            justify-content: flex-start;
+        }
+        #navi * {
+            margin: 10px 10px;
+        }
+        #top-bar * {
+            text-align: center;
+        }
+        #try {
+            display: flex;
+            flex-direction: row;
+        }
+        #desc {
+            margin-top: 30px;
+            width: 50%;
+        }
+        #progress {
+            margin: 10px;
+            width: 80%;
+            visibility: hidden;
+        }
+        #console {
+            width: 50%;
+            margin: 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+            font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+        }
+    </style>
+    <title>Rise JVM Demo</title>
+</head>
+<body>
+<main class="container">
+
+    <div class="container" id="top-bar">
+        <h1>Rise JVM</h1>
+        <p>
+        A minimal Java Virtual Machine on WASM
+        </p>
+
+        <p id="navi">
+            <a role="button" class="secondary" href="#try">Try it now!</a>
+            <a role="button" class="contrast outline" href="https://github.com/AmazingRise/rise-jvm" >GitHub</a>
+        </p>
+    </div>
+    
+
+    <h3>What's it?</h3>
+    <p>
+        Rise JVM runs Java Byte Code directly in your browser, no server needed.
+    </p>
+    <p>Traffic: 576.0kB WASM Binary + 15.9kB JavaScript </p>
+
+    <div id="try">
+        <div id="desc">
+            <h3>Try it!</h3>
+            <p>Put a .class file here.</p>
+            <p>
+                <input type="file" id="file-selector" accept=".class">
+            </p>
+            <progress id="progress"> </progress>
+        </div>
+        <article id="console">
+            👈Select a .class file
+        </article>
+    </div>
+
+    <!--<script src="./wasm_exec.js"></script>-->
+    <script src="index.js"></script>
+    <h3>Supported Features</h3>
+
+    <p>
+    <table style="width:50%">
+        <thead>
+        <tr>
+            <th scope="col">Features</th>
+            <th scope="col">Supported?</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Simple Integer Arithmetic</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>Calling functions</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>System.out.println</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>Standard Input</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>Creating Objects</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>Looping</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>Polymorphism</td>
+            <td>No</td>
+        </tr>
+        </tbody>
+    </table>
+    </p>
+
+    <h3>Acknowledgement</h3>
+    <p><a href="https://github.com/picocss/pico">Pico.css</a></p>
+</main>
+</body>
+</html>
