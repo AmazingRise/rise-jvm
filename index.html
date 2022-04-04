@@ -23,12 +23,14 @@
             width: 50%;
         }
         #progress {
-            margin: 10px;
             width: 80%;
             visibility: hidden;
         }
-        #console {
+        #console-wrapper {
             width: 50%;
+            margin-top: 40px;
+        }
+        #console {
             margin: 30px 0;
             display: block;
             height: 300px;
@@ -54,9 +56,7 @@
             <a role="button" class="contrast outline" href="https://github.com/AmazingRise/rise-jvm" >GitHub</a>
         </p>
     </div>
-    
 
-    <h3>What's it?</h3>
     <p>
         Rise JVM runs Java Byte Code directly in your browser, no server needed.
     </p>
@@ -65,20 +65,19 @@
     <div id="try">
         <div id="desc">
             <h3>Try it!</h3>
+
             <p><a href="#try" role="button" onclick="load_demo()" class="dense outline">Click here to Load Demo</a></p>
             <p>or upload a custom .class file:</p>
-            <p>
-                <input type="file" id="file-selector" accept=".class">
-            </p>
-            <p id="demo">
-
-            </p>
+            <input type="file" id="file-selector" accept=".class">
             <progress id="progress"> </progress>
         </div>
-        <article id="console" data-theme="dark">
-            <p id="text">👈Select a .class file</p>
-        </article>
+        <div id="console-wrapper">
+            <article id="console" data-theme="dark">
+                <p id="text">👈Select a .class file</p>
+            </article>
+        </div>
     </div>
+
 
     <!--<script src="./wasm_exec.js"></script>-->
     <script src="index.js"></script>
