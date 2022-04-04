@@ -2,7 +2,7 @@
 
 <div align="center">
 <nav>
-<a href="">Live Demo</a> | 
+<a href="https://risehere.net/rise-jvm">Live Demo</a> | 
 <a href="https://github.com/amazingrise/rise-jvm-core">Rise JVM Core</a>
 </nav>
 </div>
@@ -14,7 +14,7 @@ Rise JVM is a minimal Java VM based on WASM. No server needed.
 
 ## ✨Have a try
 
-<a href="">Live Demo</a>
+<a href="https://risehere.net/rise-jvm">Live Demo</a>
 
 ## About Rise JVM Core
 
