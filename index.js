@@ -23,6 +23,8 @@ fileSelector.addEventListener('change', (event) => {
 });
 
 const load_demo = function () {
+    document.getElementById("progress").style.visibility = "visible";
+    document.getElementById("text").innerText = "Downloading Main.class...";
     fetch("Main.class").then(async (res)=>{
         worker.postMessage(await res.blob());
     })
