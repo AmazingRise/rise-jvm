@@ -1,7 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	core "github.com/AmazingRise/rise-jvm-core"
+	"os"
 	"testing"
 )
 
@@ -22,5 +25,7 @@ func TestAdd(t *testing.T) {
 		0, 2, 21, 4, 182, 0, 8, 177, 0, 0, 0, 1, 0, 14, 0, 0, 0, 34, 0, 8, 0, 0, 0, 4, 0, 8, 0, 5, 0, 11, 0, 6, 0, 15, 0, 7, 0, 19, 0, 8, 0, 27, 0, 9, 0, 35, 0, 10, 0,
 		43, 0, 11, 0, 9, 0, 17, 0, 18, 0, 1, 0, 13, 0, 0, 0, 30, 0, 2, 0, 3, 0, 0, 0, 6, 26, 27, 96, 28, 104, 172, 0, 0, 0, 1, 0, 14, 0, 0, 0, 6, 0, 1, 0, 0, 0, 17,
 		0, 1, 0, 19, 0, 0, 0, 2, 0, 20}
-	fmt.Println(Run(arr))
+	buf := bytes.NewBufferString("")
+	core.Run(bytes.NewReader(arr), buf, os.Stdin, true)
+	fmt.Println(buf.String())
 }

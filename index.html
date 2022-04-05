@@ -39,6 +39,48 @@
             overflow: auto;
             font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
         }
+        #upload {
+            margin-top: 30px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            /* For mobile phones: */
+            #try {
+                display: flex;
+                flex-direction: column;
+            }
+            #console-wrapper {
+                width: 100%;
+                margin-top: 0;
+            }
+            #console {
+                margin: 0;
+            }
+            #desc {
+                margin-top: 10px;
+                width: 100%;
+            }
+            #control {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+            #upload {
+                margin-left: 30px;
+                margin-top: 0;
+            }
+            #upload p {
+                margin: 0;
+            }
+            #file-selector {
+                margin-bottom: 0;
+            }
+            #progress {
+                width: 100%;
+                margin-top: 30px;
+                margin-bottom: 0;
+            }
+        }
     </style>
     <title>Rise JVM Demo</title>
 </head>
@@ -65,10 +107,15 @@
     <div id="try">
         <div id="desc">
             <h3>Try it!</h3>
-
-            <p><a href="#try" role="button" onclick="load_demo()" class="dense outline">Click here to Load Demo</a></p>
-            <p>or upload a custom .class file:</p>
-            <input type="file" id="file-selector" accept=".class">
+            <div id="control">
+                <div id="demo">
+                    <a href="#try" role="button" onclick="load_demo()" class="dense outline">Click here to Load Demo</a>
+                </div>
+                <div id="upload">
+                or upload a custom .class file:
+                <input type="file" id="file-selector" accept=".class">
+                </div>
+            </div>
             <progress id="progress"> </progress>
         </div>
         <div id="console-wrapper">
@@ -82,7 +129,9 @@
     <!--<script src="./wasm_exec.js"></script>-->
     <script src="index.js"></script>
     <h3>Supported Features</h3>
-
+    <p>
+        A detailed list of supported opcode can be found <a href="https://github.com/AmazingRise/rise-jvm-core/blob/main/jvm/opcode.go">here</a>.
+    </p>
     <p>
     <table style="width:50%">
         <thead>
