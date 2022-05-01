@@ -1,0 +1,30 @@
+const wasmFile = require('path').resolve(__dirname, './main.wasm');
+//const assert = require('assert');
+const fs = require('fs');
+const { execSync } = require('child_process');
+const wasmExec = execSync('go env GOROOT').toString().replace(/\n/g, '') + '/misc/wasm/wasm_exec.js';
+require(wasmExec);
+
+// isWait 代表是否要等到go代码执行结束之后再执行js代码
+// 如果存在js调用go方法，那就不能等
+const launch = async (file, isWait) => {
+    const buf = fs.readFileSync(file);
+    const go = new global.Go();
+    return WebAssembly.instantiate(buf, go.importObject).then(result => {
+        if (isWait) {
+            // 这个await执行完成代码go代码已经执行结束退出了
+            return go.run(result.instance);
+        } else {
+            go.run(result.instance);
+        }
+        return;
+    });
+}
+//global.run(File content []utf8, args string)
+launch(wasmFile).then(async () => {
+    let cmd_args = process.argv.slice(2)
+    const buf = fs.readFileSync(cmd_args[0]+".class");
+    await console.log(global.run(buf, cmd_args[1]));
+    console.log(process.memoryUsage().heapUsed / 1024);
+});
+

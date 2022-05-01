@@ -4,89 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
-    <style>
-        #navi {
-            justify-content: flex-start;
-        }
-        #navi * {
-            margin: 10px 10px;
-        }
-        #top-bar * {
-            text-align: center;
-        }
-        #try {
-            display: flex;
-            flex-direction: row;
-        }
-        #desc {
-            margin-top: 30px;
-            width: 50%;
-        }
-        #progress {
-            width: 80%;
-            visibility: hidden;
-        }
-        #console-wrapper {
-            width: 50%;
-            margin-top: 40px;
-        }
-        #console {
-            margin: 30px 0;
-            display: block;
-            height: 300px;
-            flex-wrap: wrap;
-            padding: 20px 20px 0px 20px;
-            overflow: auto;
-            font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
-        }
-        #upload {
-            margin-top: 30px;
-        }
-
-        @media only screen and (max-width: 768px) {
-            /* For mobile phones: */
-            #try {
-                display: flex;
-                flex-direction: column;
-            }
-            #console-wrapper {
-                width: 100%;
-                margin-top: 0;
-            }
-            #console {
-                margin: 0;
-            }
-            #desc {
-                margin-top: 10px;
-                width: 100%;
-            }
-            #control {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-            }
-            #upload {
-                margin-left: 30px;
-                margin-top: 0;
-            }
-            #upload p {
-                margin: 0;
-            }
-            #file-selector {
-                margin-bottom: 0;
-            }
-            #progress {
-                width: 100%;
-                margin-top: 30px;
-                margin-bottom: 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./index.css">
     <title>Rise JVM Demo</title>
 </head>
 <body>
 <main class="container">
-
     <div class="container" id="top-bar">
         <h1>Rise JVM</h1>
         <p>
@@ -104,13 +26,24 @@
     </p>
     <p>Traffic: 576.0kB WASM Binary + 15.9kB JavaScript </p>
 
-    <div id="try">
-        <div id="desc">
-            <h3>Try it!</h3>
+    <div class="two-columns">
+        <div class="left-column">
+            <h3 id="try">Try it</h3>
             <div id="control">
                 <div id="demo">
-                    <a href="#try" role="button" onclick="load_demo()" class="dense outline">Load Demo</a>
+                    <select id="demo-select" oninput="load_demo()">
+                        <option value="" disabled selected>Select...</option>
+                        <option value="Add">Add.class</option>
+                        <option value="Obj">Obj.class</option>
+                        <option value="For">For.class</option>
+                    </select>
+                    <label id="demo-switch" for="switch">
+                        <input type="checkbox" disabled id="switch" name="switch" role="switch" oninput="toggle_src()">
+                        View source
+                    </label>
+<!--                    <a id="demo-src" href="#" onclick="" class="outline">Load Demo</a>-->
                 </div>
+                <hr>
                 <div id="upload">
                 or upload a custom .class file:
                 <input type="file" id="file-selector" accept=".class">
@@ -118,9 +51,10 @@
             </div>
             <progress id="progress"> </progress>
         </div>
-        <div id="console-wrapper">
-            <article id="console" data-theme="dark">
+        <div class="right-column">
+            <article id="console">
                 <p id="text">👈Select a .class file</p>
+                <pre id="src">Please select a demo program.</pre>
             </article>
         </div>
     </div>

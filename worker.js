@@ -8,12 +8,14 @@ onmessage = function(e) {
     reader.addEventListener('load', () => {
         postMessage(false);
         array = new Uint8Array(reader.result);
+
         const go = new self.Go();
         WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
             go.run(result.instance);
             postMessage(true);
-            startTime = performance.now();
+
             try {
+                startTime = performance.now();
                 const out = run(array, true);
                 let timeDiff = Math.round(performance.now() - startTime);
                 postMessage( out+ "\nProcess exited. Elapsed time: "+ timeDiff.toString() +"ms.");

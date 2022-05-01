@@ -33,8 +33,25 @@ fileSelector.addEventListener('change', (event) => {
 
 const load_demo = function () {
     document.getElementById("progress").style.visibility = "visible";
-    document.getElementById("text").innerText = "Downloading Main.class...";
-    fetch("Main.class").then(async (res)=>{
+    document.getElementById("text").innerText = "Downloading byte code...";
+    let name = document.getElementById("demo-select").value
+    fetch("demo/" + name + ".class").then(async (res)=>{
         worker.postMessage(await res.blob());
     })
+
+    fetch("demo/" + name + ".java").then(async (res)=>{
+        document.getElementById("src").innerText = await res.text();
+    })
+
+    document.getElementById("switch").disabled = false;
+}
+
+const toggle_src = function () {
+    let a = "text";
+    let b = "src";
+    if (document.getElementById(b).style.display === "block") {
+        [a, b] = [b, a];
+    }
+    document.getElementById(a).style.display = "none";
+    document.getElementById(b).style.display = "block";
 }
