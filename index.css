@@ -53,6 +53,10 @@
     /*margin-bottom: 50px;*/
 }
 
+#demo-switch {
+    visibility: hidden;
+}
+
 #demo-select {
     width: 50%;
 }
@@ -63,9 +67,12 @@
 
 #src {
     display: none;
-    overflow: auto;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
     background: none;
     font-size: 16px;
+    margin: 0;
 }
 
 @media only screen and (max-width: 768px) {
@@ -85,6 +92,10 @@
     }
     #console {
         margin: 0;
+    }
+
+    #src {
+        font-size: 8px;
     }
 
     /*#control {*/

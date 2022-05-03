@@ -43,7 +43,7 @@ const load_demo = function () {
         document.getElementById("src").innerText = await res.text();
     })
 
-    document.getElementById("switch").disabled = false;
+    document.getElementById("demo-switch").style.visibility = "visible";
 }
 
 const toggle_src = function () {
